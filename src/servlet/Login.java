@@ -49,13 +49,13 @@ public class Login extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		JSONObject jsonObject = new JSONObject();
 		if (info == null) {
-			jsonObject.put("loginResult", LoginResults.FAIL);
+			jsonObject.put("loginResult", LoginResults.FAIL);//登录失败
 			writer.print(jsonObject.toString());
-		} else if (info.getStatus().equals(StatusEnum.expired)) {
+		} else if (info.getStatus().equals(StatusEnum.expired)) {//登录成功但是已到期，需要充值才能使用
 			jsonObject.put("loginResult", LoginResults.EXPIRED);
 			jsonObject.put("nickName", info.getNickName());
 			writer.print(jsonObject.toString());
-		} else if (info.getStatus().equals(StatusEnum.normal)){
+		} else if (info.getStatus().equals(StatusEnum.normal)){//登录成功且未到期，可以直接使用
 			jsonObject.put("loginResult", LoginResults.SUCESS);
 			jsonObject.put("nickName", info.getNickName());
 			writer.print(jsonObject.toString());

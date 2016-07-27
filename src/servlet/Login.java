@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.UserInfo;
 import bean.UserInfo.StatusEnum;
 import dao.UserDao;
+import net.sf.json.JSONObject;
 import util.LoginResults;
 
 /**
@@ -46,12 +47,18 @@ public class Login extends HttpServlet {
 		UserDao userDao = new UserDao();
 		UserInfo info = userDao.queryUser(phoneNumber, password);
 		PrintWriter writer = response.getWriter();
+		JSONObject jsonObject = new JSONObject();
 		if (info == null) {
-			writer.print(LoginResults.FAIL);
+			jsonObject.put("loginResult", LoginResults.FAIL);
+			writer.print(jsonObject.toString());
 		} else if (info.getStatus().equals(StatusEnum.expired)) {
-			writer.print(LoginResults.EXPIRED);
+			jsonObject.put("loginResult", LoginResults.EXPIRED);
+			jsonObject.put("nickName", info.getNickName());
+			writer.print(jsonObject.toString());
 		} else if (info.getStatus().equals(StatusEnum.normal)){
-			writer.print(LoginResults.SUCESS);
+			jsonObject.put("loginResult", LoginResults.SUCESS);
+			jsonObject.put("nickName", info.getNickName());
+			writer.print(jsonObject.toString());
 		}
 	}
 

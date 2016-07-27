@@ -13,7 +13,7 @@ import bean.UserInfo;
 import bean.UserInfo.StatusEnum;
 import dao.UserDao;
 import net.sf.json.JSONObject;
-import util.LoginResults;
+import util.CommonEnums.LoginResults;
 
 /**
  * Servlet implementation class Login

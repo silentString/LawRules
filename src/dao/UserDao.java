@@ -19,6 +19,27 @@ public class UserDao {
 		dbUtil = new DBUtil();
 	}
 	
+	public boolean userExist(String phoneNumber) {
+		boolean exist = false;
+		String sql = "select * from user_info where phone_num = ?";
+		Connection conn = dbUtil.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			Common.setSqlParam(ps, phoneNumber);
+			ResultSet resultSet = ps.executeQuery();
+			if (resultSet.next()) {
+				exist = true;
+			}
+			dbUtil.close(resultSet);
+			dbUtil.close(ps);
+			dbUtil.close(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return exist;
+				
+	}
+	
 	public boolean addUser(UserInfo info) {
 		Connection conn = dbUtil.getConnection();
 		String sql = "INSERT INTO user_info values(?, ?, ?, ?, ?, ?, ?)";

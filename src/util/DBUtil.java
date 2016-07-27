@@ -16,7 +16,7 @@ public class DBUtil {
 		
 		try {
 			dataSource = new ComboPooledDataSource();
-			dataSource.setUser("root");
+			dataSource.setUser("dev");
 			dataSource.setPassword("");
 			dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1/law_rules?autoReconnect=true");
 			dataSource.setDriverClass("com.mysql.jdbc.Driver");

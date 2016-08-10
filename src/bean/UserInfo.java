@@ -16,6 +16,8 @@ public class UserInfo {
 		normal, expired;
 	}
 	
+	public UserInfo(){}
+	
 	public UserInfo(String phoneNumber, String password) {
 		this.phoneNumber = phoneNumber;
 		this.password = password;

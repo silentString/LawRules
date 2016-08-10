@@ -9,31 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.UserInfo;
-import bean.UserInfo.StatusEnum;
 import dao.UserDao;
 import net.sf.json.JSONObject;
-import util.CommonEnums.LoginResults;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class ChangePwd
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/ChangePwd")
+public class ChangePwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public Login() {
        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ChangePwd() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doPost(request, response);
 	}
 
@@ -41,29 +38,26 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String phoneNumber = request.getParameter("phone_number").toString();
-		String password = request.getParameter("password").toString();
+		String newPwd = request.getParameter("new_password").toString();
 		UserDao userDao = new UserDao();
-		UserInfo info = userDao.queryUser(phoneNumber, password);
-		PrintWriter writer = response.getWriter();
-		JSONObject jsonObject = new JSONObject();
+		String name = userDao.changePwd(phoneNumber, newPwd);
 		int status = 1;
-		if (info == null) {//server error
+		JSONObject data = new JSONObject();
+		if (null == name) {
 			status = 0;
-		} else if (info.getPhoneNumber().equals("0")) {//login failed
-			jsonObject.put("loginResult", LoginResults.FAIL);
-		} else if (info.getStatus().equals(StatusEnum.expired)) {//login success but expired
-			jsonObject.put("loginResult", LoginResults.EXPIRED);
-			jsonObject.put("nickName", info.getNickName());
-		} else if (info.getStatus().equals(StatusEnum.normal)){//login success and can use
-			jsonObject.put("loginResult", LoginResults.SUCESS);
-			jsonObject.put("nickName", info.getNickName());
-		} 
+		} else if (name.equals("")) {
+			data.put("changed", "FALSE");
+		} else {
+			data.put("changed", "TRUE");
+			data.put("nick_name", name);
+		}
 		JSONObject result = new JSONObject();
 		result.put("status", status);
-		result.put("data", jsonObject);
+		result.put("data", data);
+		PrintWriter writer = response.getWriter();
 		writer.print(result.toString());
+		
 	}
 
 }

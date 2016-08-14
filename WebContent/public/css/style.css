@@ -1,0 +1,303 @@
+
+body{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.main{
+    font-family: '宋体';
+}
+button{
+    border-style :none;
+}
+
+.front_home{
+    background-image: url("../image/front_index.jpg") ;
+    background-size:cover;
+    background-repeat: no-repeat;
+    height:100%;
+    font-size: 15px;
+}
+/*---------------front menu----------------------*/
+.front_home .front_menu{
+    padding:5px;
+}
+.front_home .front_menu ul{
+    display:block;
+    float:left;
+    margin-left:100px;
+    font-size: 15px;
+    list-style:none
+}
+.front_home .front_menu ul li{
+    padding-left:15px;
+    display:inline;
+    color:white;
+}
+.front_home .front_menu ul li a{
+    text-decoration:none;
+    font-weight: bold;
+    color:#065D93;
+}
+
+.front_home .front_menu .menu_userinfo{
+    float:right;
+    margin-right:150px;
+}
+
+.front_home .front_menu ul li a:hover{
+    color:red;
+}
+/*---------------index----------------------*/
+.front_home .index_footer{
+    position:fixed;
+    bottom: 20px;
+    width:100%;
+}
+.front_home .index_footer p{
+    text-align:center;
+    font-size: 15px;
+    font-weight:bold;
+    color:white;
+}
+
+.front_home .index_footer .copy_right{
+    font-size: 12px;
+    word-spacing:5px;
+    font-weight:normal;
+}
+
+.front_home .search_input{
+    position:absolute;
+    top:50%;
+    width:100%;
+}
+.front_home .search_input form{
+    margin:auto;
+    height:74px;
+    width:880px;
+    background-image: url("../image/front_search_input.jpg") ;
+    repeat:no-repeat;
+}
+.front_home #search_field{
+    height:55px;
+    width:730px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.front_home #search_button{
+    float:right;
+    height:54px;
+    width:130px;
+    background-image: url("../image/front_search_btn.jpg") ;
+    margin-top:10px;
+    margin-right:10px;
+    repeat:no-repeat;
+    border-style: none;
+}
+.front_home #search_button .hover{
+
+}
+/*---------------login----------------------*/
+.login_container{
+    background-size:cover;
+    height:100%;
+    font-size: 20px;
+    color:white;
+}
+.front_header {
+    background-position:center;
+    background-image: url("../image/front_header.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 104px;
+}
+.front_body{
+    background-image: url("../image/front_login_body.jpg") ;
+    height:664px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100%
+}
+.front_footer{
+    background-image: url("../image/front_footer.jpg") ;
+    height:307px;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+#login_form{
+    float:right;
+    margin-top:100px;
+    margin-right:150px;
+    background-image: url("../image/front_login_form.jpg") ;
+    background-repeat: no-repeat;
+    height:469px;
+    width:422px;
+}
+#login_name_field{
+    float:left;
+    position: relative;
+    margin-left: 88px;
+    margin-top: 140px;
+    width:285px;
+    height:51px;
+}
+#login_password_field{
+    float:left;
+    position: relative;
+    margin-left: 88px;
+    margin-top: 31px;
+    width:285px;
+    height:51px;
+}
+#login_button{
+    float:left;
+    background-image: url("../image/front_login_btn.jpg");
+    background-repeat: no-repeat;
+    margin-left: 45px;
+    margin-top: 20px;
+    width:334px;
+    height:55px;
+}
+#login_form a{
+    display:block;
+    float:left;
+    margin-left:65px;
+    margin-top:40px;
+    color:white;
+    text-decoration:none;
+}
+#login_form a:hover{
+    text-decoration:underline;
+}
+
+.register_form{
+    position:absolute;
+    left:50%;
+    margin:100px 0 0 -400px;
+    background-image: url("../image/front_register_form.jpg") ;
+    background-repeat: no-repeat;
+    height:475px;
+    width:800px;
+}
+.register_form span{
+    display:block;
+    margin-top:40px;
+    margin-left:25px;
+}
+.register_form a{
+    color:dodgerblue;
+}
+.register_form a:hover{
+    color:indianred;
+}
+.register_form label{
+    display:block;
+    float:left;
+    margin-top: 15px;
+    margin-left: 200px;
+}
+.register_field{
+    float:left;
+    margin-left: 15px;
+    margin-top: 15px;
+    width:285px;
+    height:40px;
+}
+.spacing{
+    height:20px;
+    width:100%;
+}
+.idcode_field{
+    float:left;
+    margin-left: 15px;
+    margin-top: 15px;
+    width:150px;
+    height:40px;
+}
+.register_form .getcode_btn{
+    float:left;
+    height:40px;
+    width:122px;
+    background-image: url("../image/front_getcode_btn.jpg") ;
+    margin-top: 15px;
+    margin-left:10px;
+    color:white;
+}
+.register_form .front_submit_btn{
+    float:left;
+    margin-top:10px;
+    margin-left:325px;
+    height:49px;
+    width:151px;
+    background-image: url("../image/front_submit_btn.jpg") ;
+    font-size:20px;/*button的字体没有跟着父div走*/
+    color:white;
+}
+
+.register_form .front_submit_left_btn{
+    float:left;
+    margin-top:20px;
+    margin-left:200px;
+    height:49px;
+    width:151px;
+    background-image: url("../image/front_submit_btn.jpg") ;
+    font-size:20px;/*button的字体没有跟着父div走*/
+    color:white;
+}
+
+.register_form .front_cancel_btn{
+    float:right;
+    margin-top:20px;
+    margin-right:200px;
+    height:49px;
+    width:151px;
+    background-image: url("../image/front_submit_btn.jpg") ;
+    font-size:20px;/*button的字体没有跟着父div走*/
+    color:white;
+}
+
+.front_form_error{
+    width:100%;
+    height:35px;
+    font-size:30px;
+    font-weight: bold;
+    color:red;
+    float:left;
+    margin:auto;
+    text-align: center;
+
+}
+
+.password_label{
+    display:block;
+    float:left;
+    margin-left: 15px;
+    margin-top: 15px;
+    width:285px;
+    height:30px;
+    font-weight: bold;
+    color:deepskyblue;
+}
+
+.home_user{
+    float:left;
+    background-image: url("../image/front_home_usercenter.jpg") ;
+    height:647px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100%
+}
+
+.home_user ul{
+    display:block;
+    margin-left:600px;
+    margin-top:200px;
+    list-style:none;
+}
+
+.home_user ul li{
+    font-size:24px;
+    color:black;
+    margin:20px;
+}

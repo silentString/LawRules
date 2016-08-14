@@ -1,0 +1,60 @@
+<div class="login_container">
+    <div class="front_header"></div>
+
+    <div class="front_body" ng-if="vm.type=='login'">
+        <form id="login_form" >
+            <input  type="text" id="login_name_field"  placeholder="用户名" ng-model="vm.phoneNumber" />
+            <input  type="text"  id="login_password_field" placeholder="密码" ng-model="vm.password" />
+            <a ng-click="vm.type='forgetPwd'">忘记密码？</a>
+            <a ng-click="vm.type='register'">免费注册</a>
+            <button id="login_button" ng-click="vm.login()"></button>
+        </form>
+    </div>
+
+    <div class="front_body" ng-if="vm.type=='forgetPwd'">
+        <form class="register_form">
+            <span>忘记密码或账号，请输入手机号，提交修改新密码</span>
+            <div class = "spacing"></div>
+            <label>手 机 号:</label><input  type="text" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
+            <label>验 证 码:</label><input  type="text" class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
+            <button class="getcode_btn" ng-click="vm.getCode()">免费获取验证码</button>
+            <button class="front_submit_left_btn" ng-click="vm.forgetPwd()">提 交</button>
+            <button class="front_cancel_btn" ng-click="vm.cancel()">取 消</button>
+            <div class="front_form_error">{{vm.error}}</div>
+        </form>
+    </div>
+
+    <div class="front_body" ng-if="vm.type=='register'">
+        <form class="register_form">
+            <span>欢迎您注册网站会员，如果你已拥有账户，则可在此<a ng-click="vm.type='login'">登录</a></span>
+            <div class = "spacing"></div>
+            <label>昵 &nbsp 称:</label><input  type="text" class="register_field"  placeholder="注册后可修改" ng-model="vm.nickName" />
+            <label>手 机 号:</label><input  type="text" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
+            <label>验 证 码:</label><input  type="text" class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
+            <button class="getcode_btn" ng-click="vm.getCode()">免费获取验证码</button>
+            <label>登录密码:</label><input  type="text" class="register_field"  placeholder="请设置登录密码" ng-model="vm.password" />
+            <label>确认密码:</label><input  type="text" class="register_field"  placeholder="请确认登录密码" ng-model="vm.ensurePassword"  />
+            <div class="front_form_error">{{vm.error}}</div>
+            <button class="front_submit_btn" ng-click="vm.register()">立 即 注 册</button>
+        </form>
+    </div>
+
+    <div  class="front_body" ng-if="vm.type=='pay'" >
+            付费页面，正在开发中...
+    </div>
+
+    <div class="front_body" ng-if="vm.type=='changePwd'">
+        <form class="register_form">
+            <span>提交修改密码</span>
+            <div class = "spacing"></div>
+            <label>原 密 码:</label><p class="password_label">{{vm.oldPwd}}</p>
+            <label>新 密 码:</label><input  type="text" class="register_field"  placeholder="请输入新密码" ng-model="vm.password"  />
+            <label>确认密码:</label><input  type="text" class="register_field"  placeholder="请确认密码" ng-model="vm.newpassword"  />
+            <button class="front_submit_left_btn" ng-click="vm.changePwd()">提 交</button>
+            <button class="front_cancel_btn" ng-click="vm.cancel()">取 消</button>
+            <div class="front_form_error">{{vm.error}}</div>
+        </form>
+    </div>
+
+    <div class="front_footer"></div>
+</div>

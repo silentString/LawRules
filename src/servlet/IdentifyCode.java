@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,24 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.UserInfo;
-import bean.UserInfo.StatusEnum;
+import core.SendSMS;
 import dao.CodeDao;
-import dao.UserDao;
 import net.sf.json.JSONObject;
-import util.CommonEnums.RegisterResults;
+import util.Common;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class IdentifyCode
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/IdentifyCode")
+public class IdentifyCode extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public IdentifyCode() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,38 +40,23 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Date cur = new Date();
 		String phoneNumber = request.getParameter("phone_number").toString();
-		String password = request.getParameter("password").toString();
-		String nickName = request.getParameter("nick_name").toString();
-		int code = Integer.parseInt(request.getParameter("code").toString());
-		if (nickName == null || nickName.equals("")) {
-			nickName = "afatiao";
-		}
-		UserInfo info = new UserInfo(phoneNumber, password, cur, 0, cur, nickName, StatusEnum.expired);
-		UserDao dao = new UserDao();
+		int content = Common.randomNum();
+		SendSMS send = new SendSMS();
+		String result = send.sendMessage(phoneNumber, content + "");
 		CodeDao codeDao = new CodeDao();
 		PrintWriter writer = response.getWriter();
 		JSONObject jsonObject = new JSONObject();
-		if (dao.userExist(phoneNumber)) {
-			jsonObject.put("data", RegisterResults.EXIST);//用户名已存在
+		int status = 1;
+		if (result.startsWith("success")){
+			if (!codeDao.updateCode(phoneNumber, content)){
+				status = 0;
+			} 
 		} else {
-			int rightCode = codeDao.queryCode(phoneNumber);
-			if (code == rightCode) {
-				if (dao.addUser(info)){
-					jsonObject.put("data", RegisterResults.SUCCESS);//register sucess
-				} else {
-					jsonObject.put("data", RegisterResults.FAIL);
-				}
-			} else {
-				jsonObject.put("data", RegisterResults.WRONGCODE);
-			}
-		
+			status = 0;
 		}
-		jsonObject.put("status", 1);
+		jsonObject.put("status", status);
 		writer.print(jsonObject.toString());
-	
 	}
 
 }

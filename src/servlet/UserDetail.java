@@ -16,24 +16,24 @@ import net.sf.json.JSONObject;
 import util.CommonEnums.LoginResults;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class UserDetail
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/UserDetail")
+public class UserDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public Login() {
        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UserDetail() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doPost(request, response);
 	}
 
@@ -41,11 +41,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String phoneNumber = request.getParameter("phone_number").toString();
-		String password = request.getParameter("password").toString();
-		UserDao userDao = new UserDao();
-		UserInfo info = userDao.queryUser(phoneNumber, password);
+		String phoneNumber = request.getParameter("phone_number");
+		UserDao dao = new UserDao();
+		UserInfo info = dao.queryUser(phoneNumber);
 		PrintWriter writer = response.getWriter();
 		JSONObject jsonObject = new JSONObject();
 		int status = 1;
@@ -53,13 +51,19 @@ public class Login extends HttpServlet {
 			status = 0;
 		} else if (info.getPhoneNumber().equals("0")) {//login failed
 			jsonObject.put("loginResult", LoginResults.FAIL);
-		} else if (info.getStatus().equals(StatusEnum.expired)) {//login success but expired
-			jsonObject.put("loginResult", LoginResults.EXPIRED);
+		} else {
+			if (info.getStatus().equals(StatusEnum.expired)) {//login success but expired
+				jsonObject.put("loginResult", LoginResults.EXPIRED);
+			} else if (info.getStatus().equals(StatusEnum.normal)) {//login success and can use
+				jsonObject.put("loginResult", LoginResults.SUCCESS);
+			}
 			jsonObject.put("nickName", info.getNickName());
-		} else if (info.getStatus().equals(StatusEnum.normal)){//login success and can use
-			jsonObject.put("loginResult", LoginResults.SUCCESS);
-			jsonObject.put("nickName", info.getNickName());
-		} 
+			jsonObject.put("register_time", info.getRegisterDate());
+			jsonObject.put("user_status", info.getStatus());
+			jsonObject.put("score", info.getPoints());
+			jsonObject.put("end_time", info.getEndDate());
+		}
+		
 		JSONObject result = new JSONObject();
 		result.put("status", status);
 		result.put("data", jsonObject);

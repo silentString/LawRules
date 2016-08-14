@@ -51,6 +51,10 @@ public class Common {
 		Timestamp ts = Timestamp.valueOf(dateTime);
 		return ts;
 	}
+	
+	public static int randomNum(){
+		return (int) (100000 + Math.random() * 900000);
+	}
 
 	public static void main(String[] args) {
 		Object object = new Date();

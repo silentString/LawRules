@@ -42,8 +42,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String phoneNumber = request.getParameter("phone_number").toString();
-		String password = request.getParameter("password").toString();
+		String phoneNumber = request.getParameter("phone_number").toString().trim();
+		String password = request.getParameter("password").toString().trim();
 		UserDao userDao = new UserDao();
 		UserInfo info = userDao.queryUser(phoneNumber, password);
 		PrintWriter writer = response.getWriter();

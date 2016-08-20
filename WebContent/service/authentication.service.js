@@ -17,10 +17,10 @@
         };
         function login(phoneNumber, password){
             return $http({
-                method:'GET',
-                url:'./json/login.data.json',
-                // method:'POST',
-                // url:'Login',
+                //method:'GET',
+                //url:'./json/login.data.json',
+                 method:'POST',
+                url:'Login',
                 params:{phone_number:phoneNumber,password:password},
                 headers:{'content-Type':'application/json;charset=utf-8'}
             });
@@ -32,7 +32,6 @@
         }
 
         function setCredential(data){
-            console.log(data);
             userData.phoneNumber = data.phoneNumber;
             userData.nickName = data.nickName;
             // userData.userId = data.userId;

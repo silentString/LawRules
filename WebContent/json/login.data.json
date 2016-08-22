@@ -1,6 +1,6 @@
 {
   "data":{
-    "loginResult":"SUCCESS",
+    "loginResult":"EXPIRED",
     "nickName":"dream"
   },
   "status":"1"

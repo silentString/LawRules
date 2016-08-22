@@ -5,9 +5,9 @@
     'use strict';
     angular.module('app.login',[])
         .controller('LoginController',LoginController);
-    LoginController.$inject = ['$location','AuthenticationService','DataService','$window'];
+    LoginController.$inject = ['$location','$uibModal','AuthenticationService','DataService','$window','factory','$timeout'];
 
-    function LoginController($location,AuthenticationService,DataService,$window){
+    function LoginController($location,$uibModal,AuthenticationService,DataService,$window,factory,$timeout){
         var vm = this;
         vm.type = 'login';
         vm.login = login;
@@ -16,6 +16,8 @@
         vm.changePwd = changePwd;
         vm.getCode = getCode;
         vm.cancel = cancel;
+        vm.isDisabled = false;
+        vm.getCodeMsg = '免费获取验证码';
 
         function login(){
             vm.loadingData = true;
@@ -35,7 +37,10 @@
                     AuthenticationService.setCredential(data);
                     $location.path('/home');
                 }else if(response.data.loginResult === "EXPIRED"){
-
+                    var param = {};
+                    param.title = "提示";
+                    param.msg = "您使用的日期已经截止，\n请充值并兑换日期后登录";
+                    factory.openConfirmModal(param, vm, $uibModal);
                 }else{
                     console.log('FAIL!');
                 }
@@ -123,17 +128,32 @@
         }
 
         function getCode(){
+            vm.isDisabled = true;
             var params = {
                 phone_number:vm.phoneNumber,
             };
             DataService.getCode(params).then(function(response){
                 if(response.accept){
-                        console.log("waite for message!");
+                    console.log("waite for message!");
                 }
                 if(response.reject){
                     vm.error = response.error;
                 }
             });
+            var time = 0;
+            var timer = function(){
+                $timeout(function(){
+                    time++;
+                    if(time != 10){
+                        vm.getCodeMsg = '重新获取密码( '+ time + ')';
+                        timer();
+                    }else{
+                        vm.isDisabled = false;
+                        vm.getCodeMsg = '重新获取密码 ';
+                    }
+                },1000)
+            };
+            timer();
         }
 
 

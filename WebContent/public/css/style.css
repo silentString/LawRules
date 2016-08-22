@@ -9,6 +9,7 @@ body{
 }
 button{
     border-style :none;
+    cursor: pointer;
 }
 
 .front_home{
@@ -159,6 +160,9 @@ button{
     width:334px;
     height:55px;
 }
+#login_button:hover{
+    background-image: url("../image/front_login_btn_hover.jpg");
+}
 #login_form a{
     display:block;
     float:left;
@@ -170,7 +174,7 @@ button{
 #login_form a:hover{
     text-decoration:underline;
 }
-
+/*---------------register----------------------*/
 .register_form{
     position:absolute;
     left:50%;
@@ -224,6 +228,19 @@ button{
     margin-left:10px;
     color:white;
 }
+.register_form .getcode_btn:hover{
+    background-image: url("../image/front_getcode_btn_hover.jpg") ;
+}
+
+.register_form .getcode_btn_disabled{
+    float:left;
+    height:40px;
+    width:122px;
+    background-image: url("../image/front_getcode_btn_disabled.jpg") ;
+    margin-top: 15px;
+    margin-left:10px;
+    color:white;
+}
 .register_form .front_submit_btn{
     float:left;
     margin-top:10px;
@@ -234,7 +251,9 @@ button{
     font-size:20px;/*button的字体没有跟着父div走*/
     color:white;
 }
-
+.register_form .front_submit_btn:hover{
+    background-image: url("../image/front_submit_btn_hover.jpg") ;
+}
 .register_form .front_submit_left_btn{
     float:left;
     margin-top:20px;
@@ -245,7 +264,9 @@ button{
     font-size:20px;/*button的字体没有跟着父div走*/
     color:white;
 }
-
+.register_form .front_submit_left_btn:hover{
+    background-image: url("../image/front_submit_btn_hover.jpg") ;
+}
 .register_form .front_cancel_btn{
     float:right;
     margin-top:20px;
@@ -256,7 +277,9 @@ button{
     font-size:20px;/*button的字体没有跟着父div走*/
     color:white;
 }
-
+.register_form .front_cancel_btn:hover{
+    background-image: url("../image/front_submit_btn_hover.jpg") ;
+}
 .front_form_error{
     width:100%;
     height:35px;
@@ -279,7 +302,7 @@ button{
     font-weight: bold;
     color:deepskyblue;
 }
-
+/*---------------userCenter----------------------*/
 .home_user{
     float:left;
     background-image: url("../image/front_home_usercenter.jpg") ;
@@ -290,14 +313,25 @@ button{
 }
 
 .home_user ul{
-    display:block;
-    margin-left:600px;
-    margin-top:200px;
-    list-style:none;
-}
+     display:block;
+     margin-left:600px;
+     margin-top:200px;
+     list-style:none;
+ }
 
 .home_user ul li{
     font-size:24px;
     color:black;
     margin:20px;
 }
+
+/*---------------modal----------------------*/
+.modal{
+    background-image: url("../image/modal.jpg") ;
+    height:378px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100%
+
+}
+

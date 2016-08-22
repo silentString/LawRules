@@ -6,10 +6,12 @@
     angular.module('app',[
         'ngRoute',
         'ngCookies',
+        'ui.bootstrap',
         // 'authentication.service',
         // 'DataService',
         'app.login',
-        'app.home'
+        'app.home',
+        'app.confirm'
     ]);
 
 })();

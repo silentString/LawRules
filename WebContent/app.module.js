@@ -11,6 +11,7 @@
         // 'DataService',
         'app.login',
         'app.home',
+        'app.user',
         'app.confirm'
     ]);
 

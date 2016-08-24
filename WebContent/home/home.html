@@ -1,7 +1,7 @@
 <div class="front_home">
     <div class="front_menu">
         <ul>
-            <li><a href="#home">首页</a></li>
+            <li><a href="#home" ng-click="vm.type='home'">首页</a></li>
             <li><a href="#home" ng-click="vm.userCenter()">个人中心</a></li>
             <li><a href="#home">收藏夹</a></li>
             <li><a href="#home">关于我们</a></li>
@@ -11,7 +11,8 @@
             <li a href="">{{vm.username}}</li>
         </ul>
     </div>
-    <div class="home_body" ng-if="vm.type == 'home'">
+
+    <div  ng-if="vm.type == 'home'" class="home_body">
         <div class="search_input">
             <form enctype="multipart/form-data" action="ashx/login.ashx" method="post">
                 <input  type="text" id="search_field" name="search" />
@@ -20,19 +21,10 @@
         </div>
     </div>
 
-    <div class="home_user" ng-if="vm.type == 'userCenter'">
-        <ul>
-            <li>昵称：{{vm.username}}</li>
-            <li>手机号：{{vm.phoneNumber}}</li>
-            <li>注册时间：{{vm.registerTime}}</li>
-            <li>账号状态：{{vm.userStatus}}</li>
-            <li>当前积分：{{vm.score}}</li>
-            <li>使用截止日期：{{vm.endTime}}</li>
-        </ul>
-    </div>
+    <div ng-if="vm.type == 'userCenter'" ng-include="'home/user/user.html'"></div>
 
     <div class="index_footer">
-        <p>浏 览 本 网 站 推 荐 您 使 用 IE7 以 上 版 本 浏 览 器</p>
+        <p>浏 览 本 网 站 推 荐 您 使 用 IE8 以 上 版 本 浏 览 器</p>
         <p class="copy_right">copy right @2016- XXX ALL RIGHT RESERVED</p>
     </div>
 </div>

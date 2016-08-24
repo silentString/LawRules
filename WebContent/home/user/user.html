@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="home_user" ng-controller="UserController as vm" >
+    <ul>
+        <li><span>昵称：{{vm.username}}</span><button class="usercenter_btn" ng-click="vm.modifyPwd()">修改昵称</button></li>
+        <li><span>手机号：{{vm.phoneNumber}}</span><button class="usercenter_btn">修改手机号</button></li>
+        <li><span>修改密码：* * * * * *</span><button class="usercenter_btn">修改密码</button></li>
+        <li><span>注册时间：{{vm.registerTime}}</span></li>
+        <li><span>账号状态：{{vm.userStatus}}</span></li>
+        <li><span>当前积分：{{vm.score}}</span><button class="usercenter_btn">立即充值</button></li>
+        <li><span>使用截止日期：{{vm.endTime}}</span></li>
+    </ul>
+</div>

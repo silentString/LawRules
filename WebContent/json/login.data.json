@@ -1,7 +1,7 @@
 {
   "data":{
-    "loginResult":"EXPIRED",
-    "nickName":"dream"
+    "loginResult":"SUCCESS",
+    "nick_name":"dream"
   },
   "status":"1"
 }

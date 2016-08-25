@@ -140,11 +140,11 @@
                     vm.error = response.error;
                 }
             });
-            var time = 0;
+            var time = 10;
             var timer = function(){
                 $timeout(function(){
-                    time++;
-                    if(time != 10){
+                    time--;
+                    if(time != 0.){
                         vm.getCodeMsg = '重新获取密码( '+ time + ')';
                         timer();
                     }else{

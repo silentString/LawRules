@@ -12,9 +12,15 @@
         vm.title = param.title;
         vm.msg = param.msg;
         vm.closeModal = closeModal;
+        vm.changePwd = changePwd;
+        vm.type = param.type;
 
         function closeModal(){
             factory.modalClose($uibModalInstance);
+        }
+
+        function changePwd(newPwd){
+            console.log(newPwd);
         }
 
     }

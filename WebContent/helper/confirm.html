@@ -1,21 +1,26 @@
+<script src="confirm.controller.js"></script>
 <div class = "modal-header">
     <span class="modal-title">{{::vm.title}}</span>
 </div>
 <div class="modal-body" ng-if="vm.type == undefined">
     {{::vm.msg}}
 </div>
+<div class = "modal-footer" ng-if="vm.type == undefined">
+    <button type = button class="btn btn-warning" ng-click="vm.closeModal()">确 认</button>
+</div>
+
+
+
 <div class="modal-body" ng-if="vm.type == 'changePwd'">
     <form class="modal_input">
         <ul>
-            <li><label>新密码</label><input style="float:right;" class="form_input" ng-model="newPwd"/></li>
-            <li><label>确认密码</label><input style="float:right;" class="form_input" ng-model="newPwd2nd"/></li>
-            <li><label>验证码</label><input style="float:right;" class="form_input" ng-model="nickName"/></ul></li>
+            <li><label>新密码</label><input type="password" style="float:right;" required class="form_input" ng-model="vm.newPwd"/></li>
+            <li><label>确认密码</label><input type="password" style="float:right;" required class="form_input" ng-model="vm.newPwd2nd"/></li>
+            <li><label>验证码</label><input style="float:right;" required class="form_input" ng-model="nickName"/></ul></li>
         </ul>
     </form>
 </div>
 <div class = "modal-footer" ng-if="vm.type == 'changePwd'">
     <button class="usercenter_btn" ng-click="vm.closeModal()">取消</button>
-    <button class="usercenter_btn" ng-click="vm.changePwd(newPwd)">确认</button></div>
-<div class = "modal-footer" ng-if="vm.type == undefined">
-    <button type = button class="btn btn-warning" ng-click="vm.closeModal()">确 认</button>
+    <button class="usercenter_btn" ng-click="vm.changePwd();">确认</button>
 </div>

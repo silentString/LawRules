@@ -1,8 +1,8 @@
 <div class="front_home">
     <div class="front_menu">
         <ul>
-            <li><a href="#home" ng-click="vm.type='home'">首页</a></li>
-            <li><a href="#home" ng-click="vm.userCenter()">个人中心</a></li>
+            <li><a href="#home" ng-click="vm.type = 'lawRules'">首页</a></li>
+            <li><a href="#home" ng-click="vm.type = 'userCenter'">个人中心</a></li>
             <li><a href="#home">收藏夹</a></li>
             <li><a href="#home">关于我们</a></li>
         </ul>
@@ -12,16 +12,10 @@
         </ul>
     </div>
 
-    <div  ng-if="vm.type == 'home'" class="home_body">
-        <div class="search_input">
-            <form enctype="multipart/form-data" action="ashx/login.ashx" method="post">
-                <input  type="text" id="search_field" name="search" />
-                <input type="submit" id="search_button" value=""/>
-            </form>
-        </div>
-    </div>
 
-    <div ng-if="vm.type == 'userCenter'" ng-include="'home/user/user.html'"></div>
+
+    <div ng-if="vm.type == 'lawRules'" ng-include="'home/law/law.html'" ng-controller="LawController"></div>
+    <div ng-if="vm.type == 'userCenter'" ng-include="'home/user/user.html'" ng-controller="UserController"></div>
 
     <div class="index_footer">
         <p>浏 览 本 网 站 推 荐 您 使 用 IE8 以 上 版 本 浏 览 器</p>

@@ -3,8 +3,8 @@
 
     <div class="front_body" ng-if="vm.type=='login'">
         <form id="login_form" >
-            <input  type="text" id="login_name_field"  placeholder="用户名" ng-model="vm.phoneNumber" />
-            <input  type="text"  id="login_password_field" placeholder="密码" ng-model="vm.password" />
+            <input  type="text" required  id="login_name_field" ng-pattern="/^1[3|4|5|7|8]\d{9}$/" placeholder="手机号" ng-model="vm.phoneNumber" />
+            <input  type="password" required id="login_password_field" placeholder="密码" ng-model="vm.password" />
             <a ng-click="vm.type='forgetPwd'">忘记密码？</a>
             <a ng-click="vm.type='register'">免费注册</a>
             <button id="login_button" ng-click="vm.login()"></button>
@@ -15,8 +15,8 @@
         <form class="register_form">
             <span>忘记密码或账号，请输入手机号，提交修改新密码</span>
             <div class = "spacing"></div>
-            <label>手 机 号:</label><input  type="text" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
-            <label>验 证 码:</label><input  type="text" class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
+            <label>手 机 号:</label><input  type="text" required ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
+            <label>验 证 码:</label><input  type="text" required class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
             <button ng-class="{false:'getcode_btn',true:'getcode_btn_disabled'}[vm.isDisabled]" ng-click="vm.getCode()" ng-disabled="vm.isDisabled">{{vm.getCodeMsg}}</button>
             <button class="front_submit_left_btn" ng-click="vm.forgetPwd()">提 交</button>
             <button class="front_cancel_btn" ng-click="vm.cancel()">取 消</button>
@@ -28,12 +28,12 @@
         <form class="register_form">
             <span>欢迎您注册网站会员，如果你已拥有账户，则可在此<a ng-click="vm.type='login'">登录</a></span>
             <div class = "spacing"></div>
-            <label>昵 &nbsp 称:</label><input  type="text" class="register_field"  placeholder="注册后可修改" ng-model="vm.nickName" />
-            <label>手 机 号:</label><input  type="text" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
-            <label>验 证 码:</label><input  type="text" class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
+            <label>昵 &nbsp 称:</label><input  type="text" required class="register_field"  placeholder="注册后可修改" ng-model="vm.nickName" />
+            <label>手 机 号:</label><input  type="text" required ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
+            <label>验 证 码:</label><input  type="text"  required class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
             <button ng-class="{false:'getcode_btn',true:'getcode_btn_disabled'}[vm.isDisabled]" ng-click="vm.getCode()" ng-disabled="vm.isDisabled">{{vm.getCodeMsg}}</button>
-            <label>登录密码:</label><input  type="text" class="register_field"  placeholder="请设置登录密码" ng-model="vm.password" />
-            <label>确认密码:</label><input  type="text" class="register_field"  placeholder="请确认登录密码" ng-model="vm.ensurePassword"  />
+            <label>登录密码:</label><input  type="password" required class="register_field"  placeholder="请设置登录密码" ng-model="vm.password" />
+            <label>确认密码:</label><input  type="password" required class="register_field"  placeholder="请确认登录密码" ng-model="vm.ensurePassword"  />
             <div class="front_form_error">{{vm.error}}</div>
             <button class="front_submit_btn" ng-click="vm.register()">立 即 注 册</button>
         </form>
@@ -48,13 +48,19 @@
             <span>提交修改密码</span>
             <div class = "spacing"></div>
             <label>原 密 码:</label><p class="password_label">{{vm.oldPwd}}</p>
-            <label>新 密 码:</label><input  type="text" class="register_field"  placeholder="请输入新密码" ng-model="vm.password"  />
-            <label>确认密码:</label><input  type="text" class="register_field"  placeholder="请确认密码" ng-model="vm.newpassword"  />
+            <label>新 密 码:</label><input  type="password" required class="register_field"  placeholder="请输入新密码" ng-model="vm.oldpassword"  />
+            <label>确认密码:</label><input  type="password" required class="register_field"  placeholder="请确认密码" ng-model="vm.newpassword"  />
             <button class="front_submit_left_btn" ng-click="vm.changePwd()">提 交</button>
             <button class="front_cancel_btn" ng-click="vm.cancel()">取 消</button>
             <div class="front_form_error">{{vm.error}}</div>
         </form>
     </div>
 
-    <div class="front_footer"></div>
+    <div class="front_footer">
+        <span>
+            <p>A法条互联网版权所有，未经协议授权禁止下载使用或建立镜像</p>
+            <p>Copyright @2016 by http://</p>
+            <p style="word-spacing:-5px;">浏 览 本 网 站 推 荐 您 使 用 IE 8 以 上 版 本 浏 览 器</p>
+        </span>
+    </div>
 </div>

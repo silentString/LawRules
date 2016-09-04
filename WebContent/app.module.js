@@ -6,12 +6,14 @@
     angular.module('app',[
         'ngRoute',
         'ngCookies',
+        'ngCkeditor',
         'ui.bootstrap',
         // 'authentication.service',
         // 'DataService',
         'app.login',
         'app.home',
-        'app.user',
+        'app.home.user',
+        'app.home.law',
         'app.confirm'
     ]);
 

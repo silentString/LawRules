@@ -1,15 +1,36 @@
-<div class="front_home">
-    <div class="front_menu">
-        <ul>
-            <li><a href="#home">首页</a></li>
-            <li><a href="#home">个人中心</a></li>
-            <li><a href="#home">收藏夹</a></li>
-            <li><a href="#home">关于我们</a></li>
+<div class="home_law" ng-controller="LawController as vm" >
+    <!--<div class="search_input">-->
+    <!--<form enctype="multipart/form-data" action="ashx/login.ashx" method="post">-->
+    <!--<input  type="text" id="search_field" name="search" />-->
+    <!--<input type="submit" id="search_button" value=""/>-->
+    <!--</form>-->
+    <!--</div>-->
+    <div  class="home_law_container" ng-show="vm.lawList">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="item in vm.displayData">
+                <span style="margin-left:15px;"><a  href="#" ng-click="vm.showArticle(item.path)">{{item.name}}</a></span>
+                <span style="float:right;">{{item.date}}</span>
+            </li>
         </ul>
+        <nav>
+            <ul class="pagination">
+                <!--<li><a href="#" ng-click="vm.displayLaw(-1)" >&laquo;</a></li>-->
+                <li ng-repeat="num in vm.page">
+                    <a href="#" ng-click="vm.displayLaw(num)" >{{num}}</a>
+                </li>
+                <!--<li><a href="#" ng-click="vm.displayLaw(0)">&raquo;</a></li>-->
+            </ul>
+        </nav>
     </div>
 
-    <div class="index_footer">
-        <p>浏 览 本 网 站 推 荐 您 使 用 IE7 以 上 版 本 浏 览 器</p>
-        <p class="copy_right">copy right @2016- XXX ALL RIGHT RESERVED</p>
+    <div  ng-show="!vm.lawList">
+        <button class="getcode_btn" ng-click="vm.printLaw()">打印</button>
+        <!--<textarea name="testEdit.bz">sdsdsdsd</textarea>-->
+        <!--<script type="text/javascript">CKEDITOR.replace('testEdit.bz');</script>-->
+        <div id="article" ng-include="vm.currentArticle"></div>
+        <!--<textarea ckeditor="editorOptions" ng-model="modelName" ng-include="vm.currentArticle">-->
+        <!--</textarea>-->
     </div>
+
+
 </div>

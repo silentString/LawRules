@@ -3,9 +3,7 @@ body{
     margin:0;
     padding:0;
     list-style:none;
-}
-.main{
-    font-family: '宋体';
+    font-family: "Noto Sans S Chinese Regular";
 }
 button{
     border-style :none;
@@ -125,6 +123,17 @@ button{
     height:307px;
     background-repeat: no-repeat;
     background-position:center;
+    text-align: center;
+}
+.front_footer span{
+    display:block;
+    padding:110px;
+}
+.front_footer p{
+    color:black;
+    display:block;
+    font-size:24px;
+    margin-top:20px;
 }
 #login_form{
     float:right;
@@ -361,6 +370,36 @@ button{
     height:40px;
     width:250px;
 }
+.home_user_container{
+    float:left;
+}
+
+/*-----------bootstrap nav-bar-----------------*/
+.navbar{
+    float:left;
+    margin-left:350px;
+    margin-top:100px;
+}
+.navbar .nav{
+    margin-top:15px;
+    list-style:none;
+    width:110px;
+}
+.navbar .nav > li{
+    margin-top:30px;
+    text-align:center;
+}
+.navbar .nav > li > a{
+    padding:5px;
+    color:grey;
+    font-size:38px;
+}
+.navbar .nav > li > a > span{
+    display:block;
+}
+.navbar .nav > li > a:hover{
+    color:royalblue;
+}
 /*---------------modal----------------------*/
 .modal{
     background-image: url("../image/modal.jpg") ;
@@ -385,3 +424,23 @@ button{
     height:50px;
 }
 
+/*----------law list--------------*/
+
+.home_law{
+    float:left;
+    background-image: url("../image/front_home_list.jpg") ;
+    height:647px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100%
+}
+.home_law_container{
+    float:left;
+    margin-top:75px;
+    width:650px;
+    margin-left:150px;
+}
+.home_law_container .list-group  li  a{
+    color:royalblue;
+    text-decoration: none;
+}

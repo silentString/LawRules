@@ -13,6 +13,8 @@
             changePwd:changePwd,
             getCode:getCode,
             userDetail:userDetail,
+            changeName:changeName,
+            getLawList:getLawList,
 
         };
         
@@ -66,10 +68,29 @@
             return $http(http).then(success, fail);
         }
 
+        function changeName(params) {
+            var http = baseHttp();
+            // http.method = 'GET';
+            // http.url = './json/changePwd.data.json';
+            http.method = 'POST';
+            http.url = 'ChangeName';
+            http.params = params;
+            return $http(http).then(success, fail);
+        }
+
+        function getLawList(){
+            var http = baseHttp();
+            // http.method = 'GET';
+            // http.url = './json/lawList.data.json';
+            http.method = 'POST';
+            http.url = 'ArticleList';
+            return $http(http).then(success, fail);
+        }
+
         //-------------------------------------------------
         function baseHttp(){
             return {
-                headers:{'content-Type':'application/json;charset=utf-8'}
+                headers:{'content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}
             };
         }
 

@@ -14,13 +14,28 @@
         vm.closeModal = closeModal;
         vm.changePwd = changePwd;
         vm.type = param.type;
+        vm.newPwd = '';
 
         function closeModal(){
             factory.modalClose($uibModalInstance);
         }
 
-        function changePwd(newPwd){
-            console.log(newPwd);
+        function changePwd(){
+            var params = {
+                phone_number:param.phoneNum,
+                new_password:vm.newPwd
+            };
+            if(vm.newPwd == vm.newPwd2nd){
+                DataService.changePwd(params).then(function(response){
+                    if(response.accept){
+                        console.log("change password ok!");
+                    }
+                    if(response.reject){
+                        vm.error = response.error;
+                    }
+                });
+            }
+            vm.closeModal();
         }
 
     }

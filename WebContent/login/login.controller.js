@@ -21,10 +21,12 @@
 
         function login(){
             vm.loadingData = true;
-            AuthenticationService.login(vm.phoneNumber,vm.password).then(loginSuccess,loginError)
-                .then(function(){
-                    vm.loadingData = false;
-                });
+            if(vm.phoneNumber != undefined){
+                AuthenticationService.login(vm.phoneNumber,vm.password).then(loginSuccess,loginError)
+                    .then(function(){
+                        vm.loadingData = false;
+                    });
+            }
         }
 
         function loginSuccess(response){
@@ -32,7 +34,7 @@
             if(response.status == 1){
                 if(response.data.loginResult === "SUCCESS"){
                     var data = {};
-                    data.nickName = response.data.nick_name;
+                    data.nickName = response.data.nickName;
                     data.phoneNumber = vm.phoneNumber;
                     AuthenticationService.setCredential(data);
                     $location.path('/home');
@@ -42,7 +44,10 @@
                     param.msg = "您使用的日期已经截止，\n请充值并兑换日期后登录";
                     factory.openConfirmModal(param, vm, $uibModal);
                 }else{
-                    console.log('FAIL!');
+                    var param = {};
+                    param.title = "提示";
+                    param.msg = "你输入的用户名或密码不正确";
+                    factory.openConfirmModal(param, vm, $uibModal);
                 }
 
             }else{
@@ -62,22 +67,30 @@
                 code:vm.idCode,
                 password:vm.password
             };
-            DataService.register(params).then(function(response){
-                if(response.accept){
-                    if(response.data === 'EXIST'){
-                        vm.error = "user exist";
-                    }else if(response.data === 'FAIL'){
-                        vm.error = "register failed";
-                    }else if(response.data === 'WRONGCODE'){
-                        vm.error = "id code error";
-                    }else{
-                        vm.type = 'pay';
-                    }
+            if(vm.nickName != undefined && vm.phoneNumber != undefined && vm.idCode != undefined
+                && vm.password != undefined && vm.ensurePassword !=undefined )
+            {
+                if(vm.password == vm.ensurePassword){
+                    DataService.register(params).then(function(response){
+                        if(response.accept){
+                            if(response.data === 'EXIST'){
+                                vm.error = "user exist";
+                            }else if(response.data === 'FAIL'){
+                                vm.error = "register failed";
+                            }else if(response.data === 'WRONGCODE'){
+                                vm.error = "id code error";
+                            }else{
+                                vm.type = 'pay';
+                            }
+                        }
+                        if(response.reject){
+                            vm.error = response.error;
+                        }
+                    });
+                }else{
+                    vm.error = "两次密码输入不一致！";
                 }
-                if(response.reject){
-                    vm.error = response.error;
-                }
-            });
+            }
         }
 
         function forgetPwd(){
@@ -85,19 +98,22 @@
                 phone_number:vm.phoneNumber,
                 code:vm.idCode,
             };
-            DataService.forgetPwd(params).then(function(response){
-                if(response.accept){
-                    if(response.data.passed == 'TRUE'){
-                        vm.type = 'changePwd';
-                        vm.oldPwd = response.data.old_password;
-                    }else{
-                        vm.error = response.data.passed;
+            if(vm.phoneNumber != undefined && vm.idCode != undefined){
+                DataService.forgetPwd(params).then(function(response){
+                    if(response.accept){
+                        if(response.data.passed == 'TRUE'){
+                            vm.type = 'changePwd';
+                            vm.oldPwd = response.data.old_password;
+                        }else{
+                            vm.error = response.data.passed;
+                        }
                     }
-                }
-                if(response.reject){
-                    vm.error = response.error;
-                }
-            });
+                    if(response.reject){
+                        vm.error = response.error;
+                    }
+                });
+            }
+
         }
 
         function changePwd(){
@@ -105,22 +121,28 @@
                 phone_number:vm.phoneNumber,
                 new_password:vm.newpassword
             };
-            DataService.changePwd(params).then(function(response){
-                if(response.accept){
-                    if(response.data.changed == 'TRUE'){
-                        var data = {};
-                        data.nickName = response.data.nick_name;
-                        data.phoneNumber = vm.phoneNumber;
-                        AuthenticationService.setCredential(data);
-                        $location.path('/home');
-                    }else{
-                        vm.error = response.data.pass;
-                    }
-                }
-                if(response.reject){
-                    vm.error = response.error;
-                }
-            });
+            if(vm.oldpassword != undefined && vm.newpassword != undefined){
+            	if(vm.oldpassword == vm.newpassword){
+            		DataService.changePwd(params).then(function(response){
+                        if(response.accept){
+                            if(response.data.changed == 'TRUE'){
+                                var data = {};
+                                data.nickName = response.data.nick_name;
+                                data.phoneNumber = vm.phoneNumber;
+                                AuthenticationService.setCredential(data);
+                                vm.type = 'login';
+                            }else{
+                                vm.error = response.data.pass;
+                            }
+                        }
+                        if(response.reject){
+                            vm.error = response.error;
+                        }
+                    });	
+            	}else{
+			vm.error = "两次密码输入不一致！"
+		}           	 
+            }           
         }
 
         function cancel(){
@@ -140,7 +162,7 @@
                     vm.error = response.error;
                 }
             });
-            var time = 10;
+            var time = 60;
             var timer = function(){
                 $timeout(function(){
                     time--;

@@ -1,18 +1,40 @@
 <div class="home_user" ng-controller="UserController as vm" >
-    <ul>
-        <li><span>昵称：{{vm.username}}</span>
-            <form ng-show="vm.changeName">
-                <input  class="form_input" ng-model="nickName"/>
-                <a class="form_link" ng-click="vm.modifyName(nickName)">确认</a>
-                <a class="form_link" ng-click="vm.changeName = false;">取消</a>
-            </form>
-        <button class="usercenter_btn" ng-if="vm.changeName==false" ng-click="vm.changeName = true;">修改昵称</button>
-        </li>
-        <li><span>手机号：{{vm.phoneNumber}}</span><button class="usercenter_btn" ng-click="vm.modifyPhoneNum()">修改手机号</button></li>
-        <li><span>修改密码：* * * * * *</span><button class="usercenter_btn" ng-click="vm.modifyPwd()">修改密码</button></li>
-        <li><span>注册时间：{{vm.registerTime}}</span></li>
-        <li><span>账号状态：{{vm.userStatus}}</span></li>
-        <li><span>当前积分：{{vm.score}}</span><button class="usercenter_btn">立即充值</button></li>
-        <li><span>使用截止日期：{{vm.endTime}}</span></li>
-    </ul>
+    <div class="navbar">
+        <ul class="nav">
+            <li><a href="#" ng-click="vm.infoType='userInfo'"><span class="glyphicon glyphicon-user" style="margin-left:7px;"></span>
+                <span style="height:9px;width:50px;"> </span>
+                <span class="glyphicon" style="font-size:14px;">用户信息</span>
+            </a></li>
+            <li><a href="#" ng-click="vm.infoType='payRecord'"><span class="glyphicon glyphicon-yen" style="margin-left:7px;"></span>
+                <span style="height:9px;width:50px;"> </span>
+                <span class="glyphicon" style="font-size:14px;">充值记录</span>
+            </a></li>
+            <li><a href="#" ng-click="vm.infoType='printRecord'"><span class="glyphicon glyphicon-list-alt" style="margin-left:7px;"></span>
+                <span style="height:9px;width:50px;"> </span>
+                <span class="glyphicon" style="font-size:14px;">打印记录</span>
+            </a></li>
+            <li><a href="#" ng-click="vm.infoType='messageCenter'"><span class="glyphicon glyphicon-comment" style="margin-left:7px;"></span>
+                <span style="height:9px;width:50px;"> </span>
+                <span class="glyphicon" style="font-size:14px;">消息中心</span>
+            </a></li>
+        </ul>
+    </div>
+    <div ng-if="vm.infoType == 'userInfo'" class="home_user_container">
+        <ul>
+            <li><span>昵称：<label ng-show="!vm.changeName">{{vm.username}}</label></span>
+                <form ng-show="vm.changeName">
+                    <input  class="form_input" ng-model="vm.newName"/>
+                    <a class="form_link" ng-click="vm.modifyName()">确认</a>
+                    <a class="form_link" ng-click="vm.changeName = false;">取消</a>
+                </form>
+                <button class="usercenter_btn" ng-show="!vm.changeName" ng-click="vm.changeName = true;">修改昵称</button>
+            </li>
+            <li><span>手机号：{{vm.phoneNumber}}</span><button class="usercenter_btn" ng-click="vm.modifyPhoneNum()">修改手机号</button></li>
+            <li><span>修改密码：* * * * * *</span><button class="usercenter_btn" ng-click="vm.modifyPwd()">修改密码</button></li>
+            <li><span>注册时间：{{vm.userInfo.registerTime}}</span></li>
+            <li><span>账号状态：{{vm.userInfo.userStatus}}</span></li>
+            <li><span>当前积分：{{vm.userInfo.score }}</span><button class="usercenter_btn">立即充值</button></li>
+            <li><span>使用截止日期：{{vm.userInfo.endTime}}</span></li>
+        </ul>
+    </div>
 </div>

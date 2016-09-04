@@ -12,36 +12,8 @@
         vm.username =  AuthenticationService.userData.nickName;
         vm.phoneNumber = AuthenticationService.userData.phoneNumber;
         vm.logout = logout;
-        vm.type = 'home';
-        vm.userCenter = userCenter;
-
-        vm.userInfo = {
-            nickName:"dd",
-            registerTime:"ss",
-            userStatus:"aa",
-            score:"ff",
-            endTime:"cc"
-        };
-
-
-        function userCenter(){
-            vm.type = 'userCenter';
-            var params = {
-                phone_number:vm.phoneNumber,
-            };
-            DataService.userDetail(params).then(function(response){
-                if(response.accept){
-                    vm.userInfo.nickName = response.data.nick_name;
-                    vm.userInfo.registerTime = response.data.register_time;
-                    vm.userInfo.userStatus = response.data.user_status;
-                    vm.userInfo.score = response.data.score;
-                    vm.userInfo.endTime = response.data.end_time;
-                }
-                if(response.reject){
-                    vm.error = response.error;
-                }
-            });
-        }
+        vm.type = 'lawRules';
+        vm.data = [];
 
         function logout(){
             AuthenticationService.logout();

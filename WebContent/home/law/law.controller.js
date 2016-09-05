@@ -8,7 +8,7 @@
     LawController.$inject = ['$location','AuthenticationService','factory','DataService','$uibModal'];
     function LawController($location, AuthenticationService,factory, DataService,$uibModal) {
         var vm = this;
-        var everyPage = 5;//每页显示个数
+        var everyPage = 10;//每页显示个数
         vm.data = [];//所有law数据
         vm.displayLaw = displayLaw;
         vm.page = [];//页码列表

@@ -209,6 +209,7 @@ button{
 .register_form label{
     display:block;
     float:left;
+    width:90px;
     margin-top: 15px;
     margin-left: 200px;
 }
@@ -429,18 +430,60 @@ button{
 .home_law{
     float:left;
     background-image: url("../image/front_home_list.jpg") ;
-    height:647px;
+    height:675px;
     background-repeat: no-repeat;
     background-size:cover;
-    width:100%
+    width:100%;
+    text-align:center;
 }
 .home_law_container{
-    float:left;
-    margin-top:75px;
-    width:650px;
-    margin-left:150px;
+    /*margin-top:75px;*/
+    margin:100px auto;
+    width:850px;
+    /*margin-left:150px;*/
+}
+.home_law_container .list-group  li{
+    font-size:16px;
 }
 .home_law_container .list-group  li  a{
+    float:left;
     color:royalblue;
     text-decoration: none;
+}
+.home_article_container{
+    width:1080px;
+    height:550px;
+    margin:100px auto;
+    /*overflow-y:scroll;*/
+    /*border:1px solid;*/
+}
+.article_content{
+    width:1080px;
+    height:500px;
+    margin:5px auto;
+    overflow-y:scroll;
+    border:1px solid;
+}
+.print_span{
+    float:left;
+    margin-left:20px;
+    width:400px;
+}
+.print_btn{
+    float:left;
+    margin-left:5px;
+    height:25px;
+    width:77px;
+    display:inline;
+    background-image: url("../image/article_print_btn.jpg") ;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+.print_btn:hover{
+    background-image: url("../image/article_print_btn_hover.jpg") ;
+    display:inline;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
 }

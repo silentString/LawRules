@@ -94,6 +94,7 @@
         }
 
         function forgetPwd(){
+            console.log("!!!!!!");
             var params = {
                 phone_number:vm.phoneNumber,
                 code:vm.idCode,

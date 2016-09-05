@@ -23,14 +23,18 @@
         </nav>
     </div>
 
-    <div  ng-show="!vm.lawList">
-        <button class="getcode_btn" ng-click="vm.printLaw()">打印</button>
-        <!--<textarea name="testEdit.bz">sdsdsdsd</textarea>-->
-        <!--<script type="text/javascript">CKEDITOR.replace('testEdit.bz');</script>-->
-        <div id="article" ng-include="vm.currentArticle"></div>
-        <!--<textarea ckeditor="editorOptions" ng-model="modelName" ng-include="vm.currentArticle">-->
-        <!--</textarea>-->
+    <div class="home_article_container"  ng-show="!vm.lawList">
+        <span class="print_span" >
+            <label style="display:block;margin-top:5px;float:left;">法律策划操作全攻略</label>
+            <button class="print_btn" ng-click="vm.printLaw()"></button>
+        </span>
+        <div class="article_content">
+            <!--<textarea name="testEdit.bz">sdsdsdsd</textarea>-->
+            <!--<script type="text/javascript">CKEDITOR.replace('testEdit.bz');</script>-->
+            <div id="article" ng-include="vm.currentArticle"></div>
+            <!--<textarea ckeditor="editorOptions" ng-model="modelName" ng-include="vm.currentArticle">-->
+            <!--</textarea>-->
+        </div>
     </div>
-
 
 </div>

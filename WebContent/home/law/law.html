@@ -1,10 +1,18 @@
-<div class="home_law" ng-controller="LawController as vm" >
-    <!--<div class="search_input">-->
-    <!--<form enctype="multipart/form-data" action="ashx/login.ashx" method="post">-->
-    <!--<input  type="text" id="search_field" name="search" />-->
-    <!--<input type="submit" id="search_button" value=""/>-->
-    <!--</form>-->
-    <!--</div>-->
+<div class="home_law" ng-controller="LawController as vm"
+     oncontextmenu=self.event.returnValue=false onselectstart="return false"
+     style="-moz-user-select: none; ">
+<script>
+    //document.oncontextmenu = function(){return false;}//阻止右键菜单
+    document.onkeydown = function(e){
+        var e=e||event;
+        if (e.ctrlKey==1 && e.keyCode==67){
+            return false;
+        }
+    }//防止ctrl+C
+    document.body.oncopy = function (){return false;} //阻止复制
+    //IE下可用
+    document.onselectstart = function(){return false;}
+</script>
     <div  class="home_law_container" ng-show="vm.lawList">
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="item in vm.displayData">

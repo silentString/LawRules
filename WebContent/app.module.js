@@ -14,6 +14,7 @@
         'app.home',
         'app.home.user',
         'app.home.law',
+        'app.home.us',
         'app.confirm'
     ]);
 

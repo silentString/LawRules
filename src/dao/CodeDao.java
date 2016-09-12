@@ -59,7 +59,7 @@ public class CodeDao {
 	
 	public int queryCode(String phoneNumber) {
 		Connection conn = dbUtil.getConnection();
-		String sql = "select * from identify_code where phone_num = ?)";
+		String sql = "select * from identify_code where phone_num = ?";
 		PreparedStatement ps;
 		int code = 0;
 		try {

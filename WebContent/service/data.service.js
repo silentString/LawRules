@@ -80,10 +80,10 @@
 
         function getLawList(){
             var http = baseHttp();
-            // http.method = 'GET';
-            // http.url = './json/lawList.data.json';
-            http.method = 'POST';
-            http.url = 'ArticleList';
+            http.method = 'GET';
+            http.url = './json/lawList.data.json';
+            // http.method = 'POST';
+            // http.url = 'ArticleList';
             return $http(http).then(success, fail);
         }
 

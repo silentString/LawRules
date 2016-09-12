@@ -28,9 +28,9 @@
         <form class="register_form">
             <span>欢迎您注册网站会员，如果你已拥有账户，则可在此<a ng-click="vm.type='login'">登录</a></span>
             <div class = "spacing"></div>
-            <label style="word-spacing:30px;">昵 称:</label><input  type="text" required class="register_field"  placeholder="注册后可修改" ng-model="vm.nickName" />
-            <label style="word-spacing:5px;">手 机 号:</label><input  type="text" required ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
-            <label style="word-spacing:5px;">验 证 码:</label><input  type="text"  required class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
+            <label style="word-spacing:30px;">昵 称:</label><input  type="text" required="required" class="register_field"  placeholder="注册后可修改" ng-model="vm.nickName" />
+            <label style="word-spacing:5px;">手 机 号:</label><input  type="text" required="required" ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="register_field"  placeholder="请输入手机号" ng-model="vm.phoneNumber"  />
+            <label style="word-spacing:5px;">验 证 码:</label><input  type="text"  required="required" class="idcode_field"  placeholder="请输入验证码" ng-model="vm.idCode"  />
             <button ng-class="{false:'getcode_btn',true:'getcode_btn_disabled'}[vm.isDisabled]" ng-click="vm.getCode()" ng-disabled="vm.isDisabled">{{vm.getCodeMsg}}</button>
             <label>登录密码:</label><input  type="password" required class="register_field"  placeholder="请设置登录密码" ng-model="vm.password" />
             <label>确认密码:</label><input  type="password" required class="register_field"  placeholder="请确认登录密码" ng-model="vm.ensurePassword"  />

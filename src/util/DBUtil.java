@@ -17,8 +17,8 @@ public class DBUtil {
 		try {
 			dataSource = new ComboPooledDataSource();
 			dataSource.setUser("dev");
-			dataSource.setPassword("");
-			dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1/law_rules?autoReconnect=true");
+			dataSource.setPassword("dev1234");
+			dataSource.setJdbcUrl("jdbc:mysql://120.26.132.104/law_rules?autoReconnect=true");
 			dataSource.setDriverClass("com.mysql.jdbc.Driver");
 			dataSource.setInitialPoolSize(3);
 			dataSource.setMinPoolSize(1);

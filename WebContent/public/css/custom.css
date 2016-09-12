@@ -1163,9 +1163,9 @@ fieldset[disabled] .btn-warning.active {
   margin-bottom: 20px;
 }
 .list-group-item {
-  position: relative;
+  /*position: relative;*/
   display: block;
-  padding: 10px 15px;
+  padding: 20px 15px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid #ddd;

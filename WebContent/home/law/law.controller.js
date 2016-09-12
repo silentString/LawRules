@@ -5,8 +5,8 @@
     'use strict';
     angular.module('app.home.law',[])
         .controller('LawController',LawController);
-    LawController.$inject = ['$location','AuthenticationService','factory','DataService','$uibModal'];
-    function LawController($location, AuthenticationService,factory, DataService,$uibModal) {
+    LawController.$inject = ['$location','AuthenticationService','factory','DataService','$uibModal','$scope'];
+    function LawController($location, AuthenticationService,factory, DataService,$uibModal,$scope) {
         var vm = this;
         var everyPage = 10;//每页显示个数
         vm.data = [];//所有law数据
@@ -19,6 +19,14 @@
         vm.lawList = true;//显示list
         vm.currentArticle = '';
         vm.printLaw = printLaw;
+
+        $scope.$on('to-child', function(d,data) {
+            // console.log(data);         //子级能得到值
+            if(vm.lawList == false){
+                vm.lawList = !vm.lawList;
+            }
+        });
+
         DataService.getLawList().then(function(response){
             if(response.accept){
                 vm.data = response.data;

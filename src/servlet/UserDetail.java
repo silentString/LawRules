@@ -57,7 +57,7 @@ public class UserDetail extends HttpServlet {
 			} else if (info.getStatus().equals(StatusEnum.normal)) {//login success and can use
 				jsonObject.put("loginResult", LoginResults.SUCCESS);
 			}
-			jsonObject.put("nickName", info.getNickName());
+			jsonObject.put("nick_name", info.getNickName());
 			jsonObject.put("register_time", info.getRegisterDate());
 			jsonObject.put("user_status", info.getStatus());
 			jsonObject.put("score", info.getPoints());

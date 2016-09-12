@@ -97,7 +97,7 @@ public class UserDao {
 	
 	public UserInfo queryUser(String phoneNumber) {
 		Connection conn = dbUtil.getConnection();
-		String sql = "select * from user_info where phone_num = ?)";
+		String sql = "select * from user_info where phone_num = ?";
 		PreparedStatement ps;
 		UserInfo userInfo = new UserInfo("0", "0");
 		try {
